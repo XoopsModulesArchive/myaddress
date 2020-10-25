@@ -1,0 +1,23 @@
+<table width="100%" border='0' cellspacing='5' cellpadding='0' align="center">
+  <tr>
+  <{foreach from=$subcategories item=cat key=count}>
+    <td valign="top">
+      <{if $cat.imgurl != ""}>
+        <a href="<{$mod_url}>/<{$call_url}>?mode=<{$cat.mode}>&amp;cid=<{$cat.cid}>">
+          <img src="<{$cat.imgurl}>" width="120" border="0" alt="">
+        </a>
+      <{/if}>
+    </td>
+    <td valign="top" width="33%">
+      <a href="<{$mod_url}>/<{$call_url}>?mode=<{$cat.mode}>&amp;cid=<{$cat.cid}>"><span style="font:bold 150%;"><{$cat.title}></span></a>&nbsp;<{$lang_total}><{$cat.address_total_sum}>&nbsp;(<{$cat.address_small_sum}>)
+      <br>
+      <{foreach from=$cat.subcategories item=subcat}>
+        <a href="<{$mod_url}>/<{$call_url}>?mode=<{$cat.mode}>&amp;cid=<{$subcat.cid}>"><{$subcat.title}></a>&nbsp;(<{$subcat.address_small_sum}>) &nbsp; 
+      <{/foreach}>
+    </td>
+    <{if ($count+1) is div by 3}>
+      </tr><tr>
+    <{/if}>
+  <{/foreach}>
+  </tr>
+</table>

@@ -1,0 +1,25 @@
+<{strip}>
+<DIV ALIGN="right"><{$pagenav}></DIV><BR>
+<TABLE CLASS="outer" CELLSPACING="1" CELLPADDING="4">
+ 	<TR>
+ 		<TH STYLE="text-align:center"><{$lang_fullname}></TH>
+		<TH STYLE="text-align:center"><{$lang_ctitle}></TH>
+		<TH STYLE="text-align:center"><{$lang_cphone}></TH>
+		<TH STYLE="text-align:center"><{$lang_mycellphone}></TH>
+		<TH STYLE="text-align:center" COLSPAN="2"><{$lang_myemail}></TH>
+<!--			<TH STYLE="text-align:center">&nbsp;</TH> -->
+ 	</TR>
+	<{section name=j loop=$employeesdata}>
+	<TR VALIGN="middle">
+		<TD CLASS="even"><{$employeesdata[j].fullname}></A></TD>
+		<TD CLASS="odd"><{$employeesdata[j].ctitle}></TD>
+		<TD CLASS="even" ALIGN="center"><{$employeesdata[j].cphone}></TD>
+		<TD CLASS="odd" ALIGN="center"><{$employeesdata[j].mycellphone1}></TD>
+		<TD CLASS="even" ALIGN="center"><{$employeesdata[j].myemail1}></TD>
+		<TD CLASS="odd" ALIGN="center"><{$employeesdata[j].myemail2}></TD>
+<!--			<TD CLASS="odd" ALIGN="center"><{$employeesdata[j].adminlink}></TD> -->
+	</TR>
+	<{/section}>
+</TABLE>
+<DIV STYLE="text-ALIGN:right"><{$pagenav}><BR></DIV>
+<{/strip}>

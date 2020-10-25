@@ -1,0 +1,41 @@
+<{strip}>
+<DIV ALIGN="left"><DIV><SPAN STYLE="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$lang_results}></DIV>
+
+<{if $total_found > 0}>
+	<DIV style="text-align:right"><{$pagenav}></DIV>
+<BR>
+<FORM name="formCompany">
+<TABLE CLASS="outer" CELLSPACING="1" CELLPADDING="4">
+  	<TR>
+			<TH>&nbsp;</TH>
+    	<TH ALIGN="center"><{$lang_cname}></TH>
+    	<TH ALIGN="center"><{$lang_cdivision}></TH>
+			<TH ALIGN="center"><{$lang_cphone}></TH>
+			<TH ALIGN="center"><{$lang_cfax}></TH>
+  	</TR>
+  	<{section name=j loop=$mycompany}>
+  		<TR VALIGN="middle">
+				<TD CLASS="even">
+				<INPUT TYPE="radio" NAME="c_id" VALUE="<{$mycompany[j].c_id}>">
+				<INPUT TYPE="HIDDEN" NAME="company" VALUE="<{$mycompany[j].company}>">
+				<INPUT TYPE="HIDDEN" NAME="cname" VALUE="<{$mycompany[j].cname}>">
+				<INPUT TYPE="HIDDEN" NAME="cdivision" VALUE="<{$mycompany[j].cdivision}>">
+				<INPUT TYPE="HIDDEN" NAME="cphone" VALUE="<{$mycompany[j].cphone}>">
+				<INPUT TYPE="HIDDEN" NAME="cfax" VALUE="<{$mycompany[j].cfax}>"></TD>
+				<TD CLASS="odd"><A href='<{$mod_url}>/viewcompany.php?mode=<{$mode}>&amp;cid=<{$mycompany[j].ccid}>&amp;op=edit&amp;c_id=<{$mycompany[j].c_id}>&amp;pop=y'><{$mycompany[j].cname}></A></TD>
+				<TD CLASS="even"><A href='<{$mod_url}>/viewcompany.php?mode=<{$mode}>&amp;cid=<{$mycompany[j].ccid}>&amp;op=edit&amp;c_id=<{$mycompany[j].c_id}>&amp;pop=y'><{$mycompany[j].cdivision}></A></TD>
+				<TD CLASS="odd"><{$mycompany[j].cphone}></TD>
+				<TD CLASS="even"><{$mycompany[j].cfax}></TD>
+  		</TR>
+  	<{/section}>
+</TABLE>
+<DIV style="text-align:right">
+  <{$pagenav}><BR>
+</DIV>
+<DIV style="text-align:left"><INPUT TYPE='button' VALUE='<{$lang_send}>' onClick='selectCompany(this.form)'></DIV>
+</FORM>
+
+<{else}>
+  <{$lang_nonefound}><BR>
+<{/if}>
+<{/strip}>

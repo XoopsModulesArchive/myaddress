@@ -1,0 +1,200 @@
+<{strip}>
+<FORM NAME='address' ID='address' ACTION='viewcompany.php' METHOD='POST' ONSUBMIT='return xoopsFormValidate_address();'>
+	<TABLE WIDTH='100%' CLASS='outer' CELLSPACING='1'>
+		<TR>
+			<TH COLSPAN='2' STYLE="text-align:center"><{$lang_editemployee}></TH></TR>
+<!-- category -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_myaddresscat}></TD>
+			<TD CLASS='even'><SELECT  SIZE='1' NAME='cid' ID='cid'>
+			<{section name=j loop=$cidselboxdata}>
+				<{if $cidselboxdata[j].value == $cid}>
+					<OPTION VALUE="<{$cidselboxdata[j].value}>" SELECTED><{$cidselboxdata[j].label}></OPTION>
+				<{else}>
+					<OPTION VALUE="<{$cidselboxdata[j].value}>"><{$cidselboxdata[j].label}></OPTION>
+				<{/if}>
+			<{/section}></SELECT></TD></TR>
+<!-- disclosed or closed -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_disclosed}></TD>
+			<TD CLASS='even'>
+			<{if $disclosed == 1}>
+			<INPUT TYPE='radio' NAME='disclosed' VALUE='1' checked><{$lang_yes}><INPUT TYPE='radio' NAME='disclosed' VALUE='0>'><{$lang_no}>
+			<{else}>
+			<INPUT TYPE='radio' NAME='disclosed' VALUE='1'><{$lang_yes}><INPUT TYPE='radio' NAME='disclosed' VALUE='0' checked><{$lang_no}>
+			<{/if}></TD></TR>
+<!-- relations -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_relations}></TD>
+			<TD CLASS='even'><SELECT SIZE='1' NAME='relations' ID='relations'>
+			<{section name=j loop=$clsselboxdata}>
+				<{if $clsselboxdata[j].value == $relations}>
+					<OPTION VALUE="<{$clsselboxdata[j].value}>" SELECTED><{$clsselboxdata[j].label}></OPTION>
+				<{else}>
+					<OPTION VALUE="<{$clsselboxdata[j].value}>"><{$clsselboxdata[j].label}></OPTION>
+				<{/if}>
+			<{/section}></SELECT></TD></TR>
+<!-- lastname & firstname -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_fullname}></TD>
+			<TD CLASS='even'><{$lang_lastname}>&nbsp;<INPUT TYPE='text' NAME='last_name' ID='last_name' SIZE='16' MAXLENGTH='50' VALUE='<{$last_name}>'>
+&nbsp;<{$lang_firstname}>&nbsp;<INPUT TYPE='text' NAME='first_name' ID='first_name' SIZE='16' MAXLENGTH='50' VALUE='<{$first_name}>'></TD></TR>
+<!-- japanese reading of name -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_fullname_jh}><{$lang_must_jh}></TD>
+			<TD CLASS='even'>&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE='text' NAME='last_name_jh' ID='last_name_jh' SIZE='16' MAXLENGTH='50' VALUE='<{$last_name_jh}>'>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<INPUT TYPE='text' NAME='first_name_jh' ID='first_name_jh' SIZE='16' MAXLENGTH='50' VALUE='<{$first_name_jh}>'></TD></TR>
+<!-- company name -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_co_name}></TD>
+			<TD CLASS='even'><p ID='company_name'>
+			<{if $company == " "}>--- Ì¤ÀßÄê ---
+			<{else}><{$company}>
+			<{/if}>
+<!--
+<INPUT TYPE='text' NAME='company' ID='company' SIZE='51' MAXLENGTH='100' VALUE='<{$company}>'>
+-->
+&nbsp;&nbsp;<B>[<A HREF="javascript:openWithSelfMain('<{$select_co}>','<{$searchco}>',600,600);"><{$lang_change_co}></A>]</B></p></TD></TR>
+<!-- department -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_cdepart}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='cdepart' ID='cdepart' SIZE='51' MAXLENGTH='100' VALUE='<{$cdepart}>'></TD></TR>
+<!-- title -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_ctitle}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='ctitle' ID='ctitle' SIZE='51' MAXLENGTH='100' VALUE='<{$ctitle}>'></TD></TR>
+<!-- company phone & fax -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_phonefax}></TD>
+			<TD CLASS='even'><{$lang_phone}>&nbsp;<INPUT TYPE='text' NAME='cphone' ID='cphone' SIZE='21' MAXLENGTH='20' VALUE='<{$cphone}>'>
+&nbsp;<{$lang_fax}>&nbsp;<INPUT TYPE='text' NAME='cfax' ID='cfax' SIZE='21' MAXLENGTH='20' VALUE='<{$cfax}>'></TD></TR>
+<!-- cellphone1,2 -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_mycellphone}></TD>
+			<TD CLASS='even'>&nbsp;&nbsp;&nbsp;&nbsp;£±&nbsp;<INPUT TYPE='text' NAME='mycellphone1' ID='mycellphone1' SIZE='21' MAXLENGTH='20' VALUE='<{$mycellphone1}>'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;£²&nbsp;<INPUT TYPE='text' NAME='mycellphone2' ID='mycellphone2' SIZE='21' MAXLENGTH='20' VALUE='<{$mycellphone2}>'></TD></TR>
+<!-- email1¡Á4 -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head' ROWSPAN='4'><{$lang_myemail}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myemail1' ID='myemail1' SIZE='51' MAXLENGTH='50' VALUE='<{$myemail1}>'></TD></TR>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myemail2' ID='myemail2' SIZE='51' MAXLENGTH='50' VALUE='<{$myemail2}>'></TD></TR>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myemail3' ID='myemail3' SIZE='51' MAXLENGTH='50' VALUE='<{$myemail3}>'></TD></TR>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myemail4' ID='myemail4' SIZE='51' MAXLENGTH='50' VALUE='<{$myemail4}>'></TD></TR>
+<!-- submit button -->
+		<TR VALIGN='middle'>
+			<TH>&nbsp;</TH>
+			<TH STYLE="text-align:right">
+			<{if $op == "new" }>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='adde'  ID='adde' VALUE='<{$lang_add}>'>&nbsp;&nbsp;&nbsp;<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{else}>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='edite'  ID='edite' VALUE='<{$lang_update}>'>&nbsp;
+				<INPUT TYPE='submit' CLASS='formButton' NAME='dele'  ID='dele' VALUE='<{$lang_delete}>'>&nbsp;&nbsp;&nbsp;
+				<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{/if}></TH></TR>
+	<{if can_edit_privatedata === true }>
+<!-- first name2 -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_first_name2}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='first_name2' ID='first_name2' SIZE='16' MAXLENGTH='50' VALUE='<{$first_name2}>'></TD></TR>
+<!-- my zipcode -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_zipcode}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myzipcode' ID='myzipcode' SIZE='11' MAXLENGTH='20' VALUE='<{$myzipcode}>'>
+&nbsp;<INPUT TYPE='submit' CLASS='formButton' NAME='ziptoadrs'  ID='ziptoadrs' VALUE='<{$lang_searchzip}>'>
+&nbsp;<INPUT TYPE='submit' CLASS='formButton' NAME='adrstozip'  ID='adrstozip' VALUE='<{$lang_searchadrs}>'></TD></TR>
+<!-- my address -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address1}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myaddress1' ID='myaddress1' SIZE='11' MAXLENGTH='20' VALUE='<{$myaddress1}>'><{$zipsearchresult}></TD></TR>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address2}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myaddress2' ID='myaddress2' SIZE='71' MAXLENGTH='80' VALUE='<{$myaddress2}>'></TD></TR>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address3}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myaddress3' ID='myaddress3' SIZE='71' MAXLENGTH='100' VALUE='<{$myaddress3}>'></TD></TR>
+<!-- my phone & fax -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_phonefax}></TD>
+			<TD CLASS='even'><{$lang_phone}>&nbsp;<INPUT TYPE='text' NAME='myphone' ID='myphone' SIZE='21' MAXLENGTH='50' VALUE='<{$myphone}>'>&nbsp;<{$lang_fax}>&nbsp;<INPUT TYPE='text' NAME='myfax' ID='myfax' SIZE='21' MAXLENGTH='20' VALUE='<{$myfax}>'></TD></TR>
+<!-- my url -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_myweb}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='myweb' ID='myweb' SIZE='51' MAXLENGTH='50' VALUE='<{$myweb}>'></TD></TR>
+<!-- my comments -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_mycomments}></TD>
+			<TD CLASS='even'><textarea NAME='mycomments' ID='mycomments' rows='2' cols='50'><{$mycomments}></textarea></TD></TR>
+	<{else}>
+<!-- first name2 -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_first_name2}></TD>
+			<TD CLASS='even'><{$first_name2}>'</TD></TR>
+			<INPUT TYPE='hidden' NAME='first_name2' ID='first_name2' VALUE='<{$first_name2}>'>
+<!-- my zipcode -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_zipcode}></TD>
+			<TD CLASS='even'><{$myzipcode}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myzipcode' ID='myzipcode' VALUE='<{$myzipcode}>'>
+<!-- my address -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address1}></TD>
+			<TD CLASS='even'><{$myaddress1}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myaddress1' ID='myaddress1' VALUE='<{$myaddress1}>'>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address2}></TD>
+			<TD CLASS='even'><{$myaddress2}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myaddress2' ID='myaddress2' VALUE='<{$myaddress2}>'>
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address3}></TD>
+			<TD CLASS='even'><{$myaddress3}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myaddress3' ID='myaddress3' VALUE='<{$myaddress3}>'>
+<!-- my phone & fax -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_phonefax}></TD>
+			<TD CLASS='even'><{$lang_phone}>&nbsp;<{$myphone}>&nbsp;<{$lang_fax}>&nbsp;<{$myfax}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myphone' ID='myphone' VALUE='<{$myphone}>'>
+			<INPUT TYPE='hidden' NAME='myfax' ID='myfax' VALUE='<{$myfax}>'>
+<!-- my url -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_myweb}></TD>
+			<TD CLASS='even'><{$myweb}></TD></TR>
+			<INPUT TYPE='hidden' NAME='myweb' ID='myweb' VALUE='<{$myweb}>'>
+<!-- my comments -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_mycomments}></TD>
+			<TD CLASS='even'><{$mycomments}></TD></TR>
+			<INPUT TYPE='hidden' NAME='mycomments' ID='mycomments' VALUE='<{$mycomments}>'>
+	<{/if}>
+<!-- date updated -->
+		<TR VALIGN='middle' ALIGN='left'>
+			<TD CLASS='head'><{$lang_updated}></TD>
+			<TD CLASS='even'><{$rend_updated}></TD></TR>
+<!-- some hidden items -->
+				<INPUT TYPE='hidden' NAME='mode' ID='mode' VALUE='<{$mode}>'>
+				<INPUT TYPE='hidden' NAME='op' ID='op' VALUE='<{$op}>'>
+				<INPUT TYPE='hidden' NAME='pop' ID='pop' VALUE='<{$pop}>'>
+				<INPUT TYPE='hidden' NAME='aid' ID='aid' VALUE='<{$aid}>'>
+				<INPUT TYPE='hidden' NAME='c_id' ID='c_id' VALUE='<{$c_id}>'>
+				<INPUT TYPE='hidden' NAME='cname' ID='cname' VALUE='<{$cname}>'>
+				<INPUT TYPE='hidden' NAME='cdivision' ID='cdivision' VALUE='<{$cdivision}>'>
+				<INPUT TYPE='hidden' NAME='updated' ID='updated' VALUE='<{$updated}>'>
+		<TR VALIGN='middle'>
+			<TH>&nbsp;</TH>
+			<TH STYLE="text-align:right">
+			<{if $op == "new" }>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='adde'  ID='adde' VALUE='<{$lang_add}>'>&nbsp;&nbsp;&nbsp;<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{else}>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='edite'  ID='edite' VALUE='<{$lang_update}>'>&nbsp;
+				<INPUT TYPE='submit' CLASS='formButton' NAME='dele'  ID='dele' VALUE='<{$lang_delete}>'>&nbsp;&nbsp;&nbsp;
+				<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{/if}></TH></TR>
+	</TABLE>
+</FORM>
+<script TYPE='text/javascript'>
+<!--
+function xoopsFormValidate_address(){}
+//-->
+</script>
+<{/strip}>

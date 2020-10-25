@@ -1,0 +1,50 @@
+<{strip}>
+<DIV ALIGN="right"><A HREF='viewcat.php?mode=<{$mode}>&amp;cid=<{$cid}>'><{$lang_categorypage}></A></DIV>
+
+<HR>
+
+<FORM ACTION="viewcompany.php" NAME="editcompany" ID="editcompany" METHOD="POST" ONSUBMIT='return xoopsFormValidate_drawcompany();'>
+<TABLE WIDTH='100%' CLASS='outer' CELLSPACING='1'>
+	<TR>
+		<TH><{$lang_companyprofile}>&nbsp;&nbsp;&nbsp;<INPUT TYPE='submit' CLASS='formButton' NAME='del' ID='del' VALUE='<{$lang_delete}>'></TH>
+		<TH><INPUT TYPE='submit' CLASS='formButton' NAME='edit' ID='edit' VALUE='<{$lang_edit}>'>
+</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_cat_title}></TD>
+		<TD CLASS='even'><{$cat_title}></TD>
+	</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_cname}></TD>
+		<TD CLASS='even'><{$c_id}>&nbsp;&nbsp;&nbsp;<{$cname}>&nbsp;<{$cdivision}></TD>
+	</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_address}></TD>
+		<TD CLASS='even'><{$czipcode}>&nbsp;<{$caddress1}><{$caddress2}><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$caddress3}></TD>
+	</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_phonefax}></TD>
+		<TD CLASS='even'><{$lang_cphone}>&nbsp;<{$cphone}>&nbsp;&nbsp;&nbsp;<{$lang_cfax}>&nbsp;<{$cfax}></TD>
+	</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_web}></TD>
+		<TD CLASS='even'><{$cweb}></TD>
+	</TR>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'><{$lang_ccomments}></TD>
+		<TD CLASS='even'><{$ccomments}></TD>
+	</TR>
+	<INPUT TYPE='hidden' NAME='mode' ID='mode' VALUE='<{$mode}>'>
+	<INPUT TYPE='hidden' NAME='op' ID='op' VALUE='<{$op}>'>
+	<INPUT TYPE='hidden' NAME='pop' ID='pop' VALUE='<{$pop}>'>
+	<INPUT TYPE='hidden' NAME='cid' ID='cid' VALUE='<{$cid}>'>
+	<INPUT TYPE='hidden' NAME='c_id' ID='c_id' VALUE='<{$c_id}>'>
+	<TR VALIGN='middle' ALIGN='left'>
+		<TD CLASS='head'>&nbsp;</TD>
+		<TD CLASS='even'>
+		<INPUT TYPE='submit' CLASS='formButton' NAME='new' ID='new' VALUE='<{$lang_addemployee}>'>&nbsp;&nbsp;&nbsp;
+		<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+		</TD>
+	</TR>
+</TABLE>
+</FORM>
+<{/strip}>

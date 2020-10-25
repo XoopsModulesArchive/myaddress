@@ -1,0 +1,37 @@
+<{strip}>
+<table width="100%" cellspacing="0" class="outer">
+  <tr>
+    <td class="even" align="center">
+			<{include file="db:myaddress_show_companyprofile.html"}>
+    </td>
+  </tr>
+</table>
+
+<{if $list_requested == 1}>
+	<{if $total_found > 0}>
+		<table width="100%" cellspacing="0" class="outer">
+  		<tr>
+    		<td class="even" align="center">
+					<{include file="db:myaddress_show_employees.html"}>
+    		</td>
+  		</tr>
+		</table>
+	<{/if}>
+<{elseif $editemployee_requested == 1 }>
+	<table width="100%" cellspacing="0" class="outer">
+  	<tr>
+    	<td class="even" align="center">
+				<{include file="db:myaddress_edit_employeeprofile.html"}>
+    	</td>
+  	</tr>
+	</table>
+<{/if}>
+<hr>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center">
+      <{include file="db:myaddress_footer.html"}>
+    </td>
+  </tr>
+</table>
+<{/strip}>

@@ -1,0 +1,99 @@
+<{strip}>
+<FORM NAME='company' ID='company' ACTION='viewcompany.php' METHOD='post' ONSUBMIT='return xoopsFormValidate_company();'>
+<TABLE WIDTH='100%' CLASS='outer' CELLSPACING='1'>
+	<TR>
+		<TH COLSPAN='2' STYLE="text-align:center"><{$lang_editcompany}></TH></TR>
+<!-- category -->
+	<TR VALIGN='top' ALIGN='left'>
+		<TD CLASS='head'><{$lang_cat_title}></TD>
+		<TD CLASS='even'><SELECT  SIZE='1' NAME='cid' ID='cid'>
+			<{section name=j loop=$cidselboxdata}>
+				<{if $cidselboxdata[j].value == $cid}>
+					<OPTION VALUE="<{$cidselboxdata[j].value}>" SELECTED><{$cidselboxdata[j].label}></OPTION>
+				<{else}>
+					<OPTION VALUE="<{$cidselboxdata[j].value}>"><{$cidselboxdata[j].label}></OPTION>
+				<{/if}>
+			<{/section}></SELECT></TD></TR>
+<!-- company name -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_cname}></TD>
+			<TD CLASS='even'>
+			<INPUT TYPE='text' NAME='cname' ID='cname' SIZE='71' MAXLENGTH='100' VALUE='<{$cname}>'></TD></TR>
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_cname_jh}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='cname_jh' ID='cname_jh' SIZE='71' MAXLENGTH='100' VALUE='<{$cname_jh}>'></TD></TR>
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_cdivision}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='cdivision' ID='cdivision' SIZE='71' MAXLENGTH='100' VALUE='<{$cdivision}>'></TD></TR>
+<!-- zipcode -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_zipcode}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='czipcode' ID='czipcode' SIZE='11' MAXLENGTH='20' VALUE='<{$czipcode}>'>
+&nbsp;<INPUT TYPE='submit' CLASS='formButton' NAME='ziptoadrs'  ID='ziptoadrs' VALUE='<{$lang_searchzip}>'>
+&nbsp;<INPUT TYPE='submit' CLASS='formButton' NAME='adrstozip'  ID='adrstozip' VALUE='<{$lang_searchadrs}>'>
+</TD></TR>
+<!-- address1 -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address1}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='caddress1' ID='caddress1' SIZE='11' MAXLENGTH='20' VALUE='<{$caddress1}>'>&nbsp;&nbsp;&nbsp;<{$zipsearchresult}>
+</TD></TR>
+<!-- address2 -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address2}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='caddress2' ID='caddress2' SIZE='71' MAXLENGTH='80' VALUE='<{$caddress2}>'></TD></TR>
+<!-- address3 -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_address3}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='caddress3' ID='caddress3' SIZE='71' MAXLENGTH='100' VALUE='<{$caddress3}>'></TD></TR>
+<!-- company phone & fax -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_phonefax}></TD>
+			<TD CLASS='even'><{$lang_cphone}>&nbsp;<INPUT TYPE='text' NAME='cphone' ID='cphone' SIZE='21' MAXLENGTH='20' VALUE='<{$cphone}>'>&nbsp;<{$lang_cfax}>&nbsp;<INPUT TYPE='text' NAME='cfax' ID='cfax' SIZE='21' MAXLENGTH='20' VALUE='<{$cfax}>'>
+</TD></TR>
+<!-- company url -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_web}></TD>
+			<TD CLASS='even'><INPUT TYPE='text' NAME='cweb' ID='cweb' SIZE='51' MAXLENGTH='50' VALUE='<{$cweb}>'></TD></TR>
+<!-- company comments -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_comments}></TD>
+			<TD CLASS='even'><TEXTAREA NAME='ccomments' ID='ccomments' ROWS='2' COLS='50'><{$ccomments}></textarea></TD></TR>
+<!-- date updated -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'><{$lang_updated}></TD>
+			<TD CLASS='even'><{$rend_updated}></TD></TR>
+<!-- hidden items -->
+<INPUT TYPE='hidden' NAME='mode' ID='mode' VALUE='<{$mode}>'>
+<INPUT TYPE='hidden' NAME='op' ID='op' VALUE='<{$op}>'>
+<INPUT TYPE='hidden' NAME='pop' ID='pop' VALUE='<{$pop}>'>
+<INPUT TYPE='hidden' NAME='c_id' ID='c_id' VALUE='<{$c_id}>'>
+<INPUT TYPE='hidden' NAME='updated' ID='updated' VALUE='<{$updated}>'>
+<!-- submit button -->
+		<TR VALIGN='top' ALIGN='left'>
+			<TD CLASS='head'></TD>
+			<TD CLASS='even'>
+			<{if $op == "add" }>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='add'  ID='add' VALUE='<{$lang_add}>'>&nbsp;&nbsp;&nbsp;<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{else}>
+				<INPUT TYPE='submit' CLASS='formButton' NAME='update'  ID='update' VALUE='<{$lang_update}>'>&nbsp;
+				<INPUT TYPE='submit' CLASS='formButton' NAME='del'  ID='del' VALUE='<{$lang_delete}>'>&nbsp;&nbsp;&nbsp;
+				<A HREF="#" onclick="history.back(); return false;"><B><{$lang_back}></B></A>
+			<{/if}>
+			</TD></TR>
+	</TABLE>
+</FORM>
+<script TYPE='text/javascript'>
+<!--
+function xoopsFormValidate_company(){}
+//-->
+</script>
+
+<hr>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tr>
+    <td align="center">
+      <{include file="db:myaddress_footer.html"}>
+    </td>
+  </tr>
+</table>
+<{/strip}>

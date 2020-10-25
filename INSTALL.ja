@@ -1,0 +1,126 @@
+// ------------------------------------------------------------------------- //
+// MyAddress - XOOPS addressbook //
+// <http://forum.kuri3.net/> //
+// ------------------------------------------------------------------------- //
+################################################################################
+##### インストール #####
+################################################################################
+- myaddress全部をmodulesディレクトリ以下に展開。
+- 普通のようにモジュールインストールする。
+- アドレスブックモジュールの一般管理画面で必要事項を設定する。
+cf;パーソナル用途とグループウェア用途に使い分けできるモードのデフォルト設定ができます。
+- 同じく管理メニューでカテゴリを作る。（カテゴリがないと動作しません）
+- システム管理画面でアドレスブックにアクセスできる新規グループを作る（推奨）。
+- 管理メニューでグループ別にアクセス可能なカテゴリーを設定。
+- 管理メニューでグループ別に分類コードを設定。
+注意）分類コードを設定しないと"relations undefined"というエラーを吐きまくります。
+注意）管理者、登録ユーザーグループにも分類コードを登録した場合、複数グループに属するユーザーにはすべての分類コードが累積（または重複）して展開されますので注意してください。
+- プライバシー保護のため、SSLでの運用をお奨めします。
+################################################################################
+##### 郵便番号テーブルの作成 #####
+################################################################################
+[Jun.23,2004 ver.1.1.2]　初期作成方法を変更しました。
+- Marijuannaさんのご厚意でpostalcodeモジュールを使うことにしました。
+- http://marijuana.ddo.jp/でPostalCodeモジュールをダウンロードしてください。
+- postdata040よりinsert権限さえあれば管理画面よりオートにインストールできるようになりました。
+- ただし、これでもエラーが出る場合は次のような原因が考えられます。
+・実行時フリーメモリの不足（Linuxの場合再起動すれば問題解決）
+・実行時間不足によるタイムアウト
+・ファイルアップロードサイズ超過（postdata040は各データが3MBあります）
+- そこで、Marijuannaさんのモジュールでもうまくいかない場合は当サイトのpostdata040_hodakaをお試しください。アップロードデータをphpデフォルト設定の2MB以下に抑えてあります。さらに、.htaccessが使える場合は実行時間や割当メモリを変更できます。同梱されてる.htaccess.distをrenameしてお使いください。
+##### 以下はpostdata040未満をインストールする場合です。
+##### できるだけpostdata040以上をお使いください。
+- PostalCodeモジュールは、mysqlのloadコマンド(File_priv)が使えることが前提になります。この権限がない場合、table構造は作成されますがデータがinsertされません。また、サーバーによっては改行コードエラーが出ますので、管理者画面の一般設定で「MySQLデバッグ」でエラー内容を確認して原因をつかんでください。
+- File_priv権限は自宅サーバーでないと苦しいかもしれません。データが空でもmyaddress自体は動きますので住所変換機能を諦めてください。
+-参考までに筆者環境でphpmyadminによりインストールしたプロセスを紹介します。
+まずrootでmysqlにログインし、
+既存xoopsユーザー修正：
+update user set File_priv='Y' where User='xoopsuser';
+新規xoopsユーザー作成の場合なら：
+insert into user values('localhost','xoopsuser','','y','y','y','y','y','y','y','n','n','y','n','n','y','y');
+update user set password=password('password') where user='xoopsuser';
+phpmyadminでは：
+LOAD DATA INFILE '/xoopsRootDirectoy絶対番地/modules/postdata/include/post_all.inc' INTO TABLE `labo_postalcode` FIELDS TERMINATED BY ',' optionally enclosed by '"';
+LOAD DATA INFILE '/xoopsRootDirectoy絶対番地/modules/postdata/include/jigyosyo.inc' INTO TABLE `labo_postalcode` FIELDS TERMINATED BY ',' optionally enclosed by '"';
+################################################################################
+##### 参考）既存のアドレス帳のインポート #####
+################################################################################
+- 次のようにやれば簡単にできます。
+１．csv形式のデータ（例：hudemame.csv）をXOOPS_ROOT_URL/uploadsなど好きなところへアップロード。
+２．mysqlにログインして、
+load data infile '/upload/directory/hudemame.csv' into table xxxxx_myaddress_addressbook fields terminated by ',' optionally enclosed by '"' ignore 1 lines (aid,c_id,last_name,first_name,last_name_jh,first_name_jh,fullname,fullname_jh,cdepart,ctitle,cphone,cfax,mycellphone2,myemail2,myemail4,ccomments,relations,first_name2,myzipcode,myaddress1,myaddress2,myaddress3,myphone,myfax,myemail1,myemail3,mycellphone1,mycomments,disclosed,uid);
+注）ignore 1 lines １行目がヘッダ行の場合
+(aid,c_id.....) csvファイルの項目の並び順に記述。もちろんテーブル構成と同じ順序なら不要です。
+３．会社テーブルも同様にインポートできると思います。
+################################################################################
+##### 最後にMySQL設定の確認 #####
+################################################################################
+- MySQLでキーサーチするときsubstringを使います。これにはdefault-character-set=ujisが必要のようです。そこでMySQLのバージョンがv3.23.15未満ならオプションを付けてconfigする。
+"./configure --with-charset=ujis"
+または、バージョンが3.23.15以上ならmy.cnfを編集して、
+default-character-set=ujis
+このあたりMySQLに強い方がおられたらアドバイスをお願いします。
+###############################################################################
+##### 　バージョンアップの場合 #####
+###############################################################################
+[1.1.2から1.1.3へのバージョンアップ]
+上書きインストールしてください。
+下記のテンプレートファイルが変更になってますので、テンプレートマネジャーで確実に更新してください。
+- myaddress_addressbook.html
+- myaddress_edit_employeeprofile.html
+[1.0から1.1へのバージョンアップ]
+相当書き換えましたので、全ファイル置き換えをしてください。
+- サーバーのファイルをバックアップしておきます。
+- サーバーのファイルをすべて削除のうえ、新規アップロードしてください。
+- モジュールアップデートします。
+- defaultテンプレートをコピーしている場合は、モジュールアップデート後テンプレートマネジャーで全テンプレートファイルを更新してください。
+- DBはいっさいの変更はありません。
+*********　以下旧方式郵便番号インストール手順の項を削除（筆者メモとして残しておきます）
+*********　postalcodeモジュールではtable構造が変更されています。
+*********
+- モジュールインストールが終了したら郵便番号テーブルをインサートします。データサイズがでかすぎてPHPスクリプトではタイムアウトになってしまいます。そこで、こんな方法で。
+１．myaddress_zipcode.csvはsqlディレクトリの下にあります。
+２．サーバーのmysqlにログインして、
+$ load data
+infile '/xoops/home/directory/modules/myaddress/sql/myaddress_zipcode.csv'
+into table xxxxx_myaddress_zipcode
+fields terminated by ','
+optionally enclosed by '"';
+注：xxxxxはxoopsのＤＢ名のprefix
+- なお、郵政公社の最新の郵便番号データKEN_ALL.CSVを使うには、まずhttp://www.post.japanpost.jp/zipcode/dl/kogaki.html でダウンロードします。エディタか何かで文字コードをsjisからeucに変換します。これをサーバーの適当な場所にアップロードして：
+１．mysqlにログインして（またはphpMyadminで）、
+drop table xxxxx_myaddress_zipcode;
+create table xxxxx_myaddress_zipcode ( \
+zipcode varchar(7) default '' not null, \
+pref varchar(100) default '' not null, \
+city varchar(100) default '' not null, \
+town varchar(255) default '' not null, \
+key zipcode_idx (zipcode), \
+key pref_idx (pref), \
+key city_idx (city, town), \
+key all_idx (pref, city, town) \
+) TYPE=MyISAM;
+注）xxxxxはxoopsのDB名のprefix
+２．続いて、
+load data \
+infile '/upload/directory/KEN_ALL.CSV' \
+into table xxxxx_myaddress_zipcode \
+fields terminated by ',' \
+optionally enclosed by '"';
+３．さらに、MyAlbumモジュールに不要な項目を削除。
+ALTER TABLE xxxxx_myaddress_zipcode
+DROP code,
+DROP oldzip,
+DROP addr1,
+DROP addr2,
+DROP addr3,
+DROP d10,
+DROP d11,
+DROP d12,
+DROP d13,
+DROP d14,
+DROP d15;
+なんでこんな複雑なことを?
+CSVレコードが約13万件あるのでEXCELLでは加工できないのと、phpスクリプトではタイムアウトになってしまうので、回りくどい方法ですが確実にテーブル作成できます。
+**********
+******************* 削除ここまで　**************************************************

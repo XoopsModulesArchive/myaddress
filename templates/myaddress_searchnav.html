@@ -1,0 +1,8 @@
+<td class="even" align="left"><b><{$lang_buttonforsearch}></b></td>
+<td class="even" align="center">
+<div>
+	<{section loop=$action_key name=k}>
+	<A HREF='<{$action_url}>&amp;skey=<{$action_key[k].skey}>'><B><{$action_key[k].char}></B>&nbsp;&nbsp;&nbsp;</A>
+	<{/section}>
+</div>
+</td>

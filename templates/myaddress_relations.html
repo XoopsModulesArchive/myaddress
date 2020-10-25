@@ -1,0 +1,31 @@
+<FORM NAME="edit" METHOD="post" ACTION="<{$url}>">
+<TABLE WIDTH="50%" CLASS="outer" CELLPADDING="4" CELLSPACING="1">
+	<TR VALIGN="middle">
+		<TH STYLE="text-align:center"><{$lang_title}></TH>
+		<TH STYLE="text-align:center"><{$lang_weight}></TH>
+		<TH STYLE="text-align:center"><{$lang_delete}></TH></TR>
+  <{section name=j loop=$myreldata}>
+	<TR VALIGN='middle'>
+		<TD STYLE="text-align:center"><INPUT TYPE="text" NAME="title[]" LENGTH="21" MAXLENGTH="50" VALUE="<{$myreldata[j].title}>"></TD>
+		<TD STYLE="text-align:center"><INPUT TYPE="text" NAME="weight[]" LENGTH="6" MAXLENGTH="5" VALUE="<{$myreldata[j].weight}>"></TD>
+		<TD STYLE="text-align:center"><INPUT TYPE="checkbox" NAME="del[]" VALUE="<{$myreldata[j].rid}>">
+		<INPUT TYPE="hidden" NAME="rid[]" VALUE="<{$myreldata[j].rid}>"></TD></TR>
+	<{/section}>
+	<TR VALIGN='middle'>
+		<INPUT TYPE="hidden" NAME="selgrp" VALUE="<{$selgrp}>">
+		<TD COLSPAN="3" STYLE="text-align:center"><INPUT TYPE="submit" NAME="edit" VALUE="<{$lang_send}>"></TD></TR>
+</TABLE><BR>
+</FORM>
+<FORM NAME="add" METHOD="post" ACTION="<{$url}>">
+<TABLE WIDTH="50%" CLASS="outer" CELLPADDING="4" CELLSPACING="1">
+	<TR VALIGN="middle">
+		<TH STYLE="text-align:center"><{$lang_title}></TH>
+		<TH STYLE="text-align:center"><{$lang_weight}></TH></TR>
+	<TR VALIGN='middle'>
+		<TD STYLE="text-align:center"><INPUT TYPE="text" NAME="title" LENGTH="21" MAXLENGTH="50"></TD>
+		<TD STYLE="text-align:center"><INPUT TYPE="text" NAME="weight" LENGTH="6" MAXLENGTH="5"></TD></TR>
+	<TR VALIGN='middle'>
+		<INPUT TYPE="hidden" NAME="selgrp" VALUE="<{$selgrp}>">
+		<TD COLSPAN="2" STYLE="text-align:center"><INPUT TYPE="submit" NAME="add" VALUE="<{$lang_add}>"></TD></TR>
+</TABLE>
+</FORM>

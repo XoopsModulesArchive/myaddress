@@ -1,0 +1,78 @@
+<{strip}>
+<DIV ALIGN="left"><DIV><SPAN STYLE="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$lang_results}></DIV>
+
+<{if $total_found != 0}>
+
+	<DIV ALIGN="right"><{$pagenav}></DIV>
+
+<BR>
+
+<TABLE CLASS="outer" CELLSPACING="1" CELLPADDING="4">
+	<{if $mode == 1}>
+  	<TR>
+    	<TH STYLE="text-align:center;width:12%;"><{$lang_fullname}></TH>
+			<TH STYLE="text-align:center;width:14%;"><{$lang_myphone}></TH>
+			<TH STYLE="text-align:center;width:14%;"><{$lang_mycellphone1}></TH>
+    	<TH STYLE="text-align:center;width:30%;"><{$lang_cname}></TH>
+			<TH STYLE="text-align:center;width:14%;"><{$lang_cphone}></TH>
+			<TH STYLE="text-align:center;width:8%;"><{$lang_myemail1}></TH>
+			<TH STYLE="text-align:center;width:8%;"><{$lang_myemail2}></TH>
+<!-- we comment out this link 'cause we have no function of updating  addressbook table by GET method
+			<TH STYLE="text-align:center">&nbsp;</TH>
+-->
+  	</TR>
+  	<{section name=j loop=$myaddress}>
+  	<TR VALIGN="middle" class="<{cycle values="even, odd"}>">
+			<TD align="left"><{$myaddress[j].fullname}></TD>
+			<TD STYLE="text-align:center"><{$myaddress[j].myphone}></TD>
+			<TD STYLE="text-align:center"><{$myaddress[j].mycellphone1}></TD>
+			<TD align="left"><{$myaddress[j].cname}></TD>
+			<TD STYLE="text-align:center"><{$myaddress[j].cphone}></TD>
+			<TD STYLE="text-align:left"><{$myaddress[j].myemail1}></TD>
+			<TD STYLE="text-align:left"><{$myaddress[j].myemail2}></TD>
+<!-- we comment out this link 'cause we have no function of updating  addressbook table by GET method
+			<TD ALIGN="center"><{$myaddress[j].adminlink}></TD>
+-->
+  	</TR>
+  	<{/section}>
+	<{else}>
+  	<TR>
+    	<TH STYLE="text-align:center;width:35%;"><{$lang_cname}></TH>
+    	<TH STYLE="text-align:center;width:25%;"><{$lang_cdivision}></TH>
+			<TH STYLE="text-align:center;width:15%;"><{$lang_cphone}></TH>
+			<TH STYLE="text-align:center;width:15%;"><{$lang_cfax}></TH>
+			<TH STYLE="text-align:center;width:10%;"><{$lang_cweb}></TH>
+<!-- we comment out this link 'cause we have no function of updating table company by GET method	
+			<TH STYLE="text-align:center">&nbsp;</TH>
+-->
+  	</TR>
+  	<{section name=j loop=$mycompany}>
+  	<TR VALIGN="middle"  class="<{cycle values="even, odd"}>">
+			<TD align="left"><A href='<{$mod_url}>/viewcompany.php?mode=<{$mode}>&amp;cid=<{$mycompany[j].ccid}>&amp;op=list&amp;c_id=<{$mycompany[j].c_id}>'><{$mycompany[j].cname}></A></TD>
+			<TD align="left"><A href='<{$mod_url}>/viewcompany.php?mode=<{$mode}>&amp;cid=<{$mycompany[j].ccid}>&amp;op=list&amp;c_id=<{$mycompany[j].c_id}>'><{$mycompany[j].cdivision}></A></TD>
+			<TD STYLE="text-align:center"><{$mycompany[j].cphone}></TD>
+			<TD STYLE="text-align:center"><{$mycompany[j].cfax}></TD>
+			<TD ALIGN="center">
+			<{if $mycompany[j].cweb != "" }>
+				<A href="<{$mycompany[j].cweb}>" target="_blank"><img src="<{$xoops_url}>/images/icons/www.gif" border="0" alt="<{$mycompany[j].alt_msg}>"></A>
+			<{else}>
+				&nbsp;
+			<{/if}></TD>
+<!-- we comment out this link 'cause we have no function of updating table company by GET method
+			<TD ALIGN="center"><{$mycompany[j].adminlink}></TD>
+-->
+  	</TR>
+  	<{/section}>
+	<{/if}>
+</TABLE>
+
+<DIV STYLE="text-align:right">
+  <{$pagenav}><BR>
+</DIV>
+
+<{else}>
+
+  <{$lang_nonefound}><BR>
+
+<{/if}>
+<{/strip}>

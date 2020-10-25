@@ -1,0 +1,34 @@
+<A HREF="download.php"><{$lang_search}></A>&nbsp;<SPAN STYLE="font-weight:bold;">&raquo;&raquo;</SPAN>&nbsp;<{$lang_results}><BR><BR>
+
+<{if $total_found != 0}>
+
+<TABLE CLASS="outer" CELLSPACING="1" CELLPADDING="4">
+  <TR>
+    <TH ALIGN="center"><{$lang_fullname}></TH>
+		<TH ALIGN="center"><{$lang_myphone}></TH>
+		<TH ALIGN="center"><{$lang_mycellphone1}></TH>
+		<TH ALIGN="center"><{$lang_myemail1}></TH>
+		<TH ALIGN="center"><{$lang_updated}></TH>
+  </TR>
+  <{section name=j loop=$myaddresses}>
+  <TR VALIGN="middle">
+		<TD CLASS="even"><{$myaddresses[j].fullname}></A></TD>
+		<TD CLASS="odd" STYLE="text-align:center"><{$myaddresses[j].myphone}></TD>
+		<TD CLASS="even" STYLE="text-align:center"><{$myaddresses[j].mycellphone1}></TD>
+		<TD CLASS="odd" STYLE="text-align:left"><{$myaddresses[j].myemail1}></TD>
+		<TD CLASS="even" STYLE="text-align:left"><{$myaddresses[j].updated}></TD>
+  </TR>
+  <{/section}>
+
+</TABLE>
+
+<DIV STYLE="text-align:center">
+  <{$pagenav}>
+  <{$lang_numfound}>
+</DIV>
+
+<{else}>
+
+  <{$lang_nonefound}>
+
+<{/if}>
